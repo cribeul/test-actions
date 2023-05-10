@@ -10,6 +10,10 @@ jobs:
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - name: Check out repository code
         uses: actions/checkout@v3
+      - name: Setup Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.10'
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
       - name: List files in the repository
@@ -21,7 +25,23 @@ jobs:
           repository: boschresearch/image-render-setup
           ref: main
           path: image-render-setup
+
+      - name: Checkout functional-json
+        uses: actions/checkout@v3
+        with:
+          repository: boschresearch/functional-json
+          ref: main
+          path: image-render-setup/repos
+
       - name: List files in the repository
         run: |
-          ls ${{ github.workspace }}
+          ls ${{ github.workspace }}/image-render-setup/repos
+          
+      - name: Install Catharsys Modules
+        run: |
+          cd image-render-setup
+          pip install .
+          cd repos/functional-json
+          pip install .
+          cathy build docs -h
       - run: echo "🍏 This job's status is ${{ job.status }}."
