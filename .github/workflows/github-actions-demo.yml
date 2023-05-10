@@ -55,11 +55,12 @@ jobs:
 
       - name: Build Documentation
         run: cathy build docs -I
+      
+      - name: Copy index referrer
+        run: cp index.html ./image-render-setup/docs/build/.
         
       - name: List docs folder
         run: |
-          ls .
-          ls image-render-setup/docs
           ls image-render-setup/docs/build
 
       - name: Deploy
