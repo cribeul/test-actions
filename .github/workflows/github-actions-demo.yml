@@ -46,5 +46,14 @@ jobs:
           pip install .
           cd repos/functional-json
           pip install .
-          cathy build docs -h
+      
+      - name: Build Documentation
+        run: cathy build docs -I
+        
+      - name: List docs folder
+        run: |
+          ls .
+          ls image-render-setup/docs
+          ls image-render-setup/docs/build
+          
       - run: echo "🍏 This job's status is ${{ job.status }}."
