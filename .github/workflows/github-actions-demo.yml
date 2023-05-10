@@ -58,5 +58,13 @@ jobs:
           ls .
           ls image-render-setup/docs
           ls image-render-setup/docs/build
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          publish_branch: gh-pages
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: image-render-setup/docs/build/
+          force_orphan: true 
           
       - run: echo "🍏 This job's status is ${{ job.status }}."
