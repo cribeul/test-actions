@@ -40,16 +40,16 @@ jobs:
         run: |
           ls ${{ github.workspace }}/image-render-setup/repos
           
+      - name: Install Functional JSON
+        run: |
+          cd image-render-setup/repos/functional-json
+          pip install .
+      
       - name: Install Catharsys Setup
         run: |
           cd image-render-setup
           pip install -e .
 
-      - name: Install Functional JSON
-        run: |
-          cd repos/functional-json
-          pip install .
-      
       - name: Build Documentation
         run: cathy build docs -I
         
