@@ -31,7 +31,7 @@ jobs:
         with:
           repository: boschresearch/functional-json
           ref: main
-          path: image-render-setup/repos
+          path: image-render-setup/repos/functional-json
 
       - name: List files in the repository
         run: |
